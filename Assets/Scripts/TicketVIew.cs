@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TicketView : MonoBehaviour
 {
+    // это указатели, а не данные. 
     [SerializeField]
     private Text description;
 
@@ -20,6 +21,7 @@ public class TicketView : MonoBehaviour
 
     public void SetTicketModel(TicketModel model)
     {
+
         _model = model;
         description.text = _model.Description;
         Debug.Log(description.text);
