@@ -23,7 +23,6 @@ public class Game : Singleton<Game>
     }
     public void Next()
     {
-
         TicketModel model = _ticketManager.GetModel(++active_ticket);
         if (model != null)
             ticketView.SetTicketModel(model);

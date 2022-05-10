@@ -4,45 +4,32 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject storeMenu;
-    [SerializeField] private GameObject levelsMenu;
-    [SerializeField] private GameObject earnCoins;
+    [SerializeField] public GameObject mainMenu;
+    [SerializeField] public GameObject storeMenu;
+    [SerializeField] public GameObject levelsMenu;
+    [SerializeField] public GameObject earnCoins;
+
+    private StateMachine StateMachine;
 
     void Awake()
     {
-        mainMenu.SetActive(true);
-        storeMenu.SetActive(false);
-        levelsMenu.SetActive(false);
-        earnCoins.SetActive(false);
+        StateMachine.SetState(StateMachine.State.MENU);
     }
     public void pushStore()
     {
-        mainMenu.SetActive(false);
-        storeMenu.SetActive(true);
-        levelsMenu.SetActive(false);
-        earnCoins.SetActive(false);
+        StateMachine.SetState(StateMachine.State.STORE);
     }
     public void pushBacktoMenu()
     {
-        mainMenu.SetActive(true);
-        storeMenu.SetActive(false);
-        levelsMenu.SetActive(false);
-        earnCoins.SetActive(false);
+        StateMachine.SetState(StateMachine.State.MENU);
     }
     public void pushPlay()
     {
-        mainMenu.SetActive(false);
-        storeMenu.SetActive(false);
-        levelsMenu.SetActive(true);
-        earnCoins.SetActive(false);
+        StateMachine.SetState(StateMachine.State.LEVELS);
     }
     public void pushEarnCoins()
     {
-        mainMenu.SetActive(false);
-        storeMenu.SetActive(false);
-        levelsMenu.SetActive(false);
-        earnCoins.SetActive(true);
+        StateMachine.SetState(StateMachine.State.EARNCOINS);
     }
 
 }
