@@ -9,27 +9,28 @@ public class Menu : MonoBehaviour
     [SerializeField] public GameObject levelsMenu;
     [SerializeField] public GameObject earnCoins;
 
-    private StateMachine StateMachine;
+    private StateMachine stateMachine;
 
     void Awake()
     {
-        StateMachine.SetState(StateMachine.State.MENU);
+        stateMachine = new StateMachine(this);
+        stateMachine.SetState(StateMachine.State.MENU);
     }
     public void pushStore()
     {
-        StateMachine.SetState(StateMachine.State.STORE);
+        stateMachine.SetState(StateMachine.State.STORE);
     }
     public void pushBacktoMenu()
     {
-        StateMachine.SetState(StateMachine.State.MENU);
+        stateMachine.SetState(StateMachine.State.MENU);
     }
     public void pushPlay()
     {
-        StateMachine.SetState(StateMachine.State.LEVELS);
+        stateMachine.SetState(StateMachine.State.LEVELS);
     }
     public void pushEarnCoins()
     {
-        StateMachine.SetState(StateMachine.State.EARNCOINS);
+        stateMachine.SetState(StateMachine.State.EARNCOINS);
     }
 
 }

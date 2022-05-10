@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+public class StateMachine
 {
-   private Menu _menu;
-
-   public enum State { MENU, STORE, LEVELS, EARNCOINS }
-
+    private Menu _menu;
+    public enum State { MENU, STORE, LEVELS, EARNCOINS }
+    public StateMachine(Menu menu) {
+        _menu = menu;
+    }
+   
    public void SetState(State value)
    {
         switch (value)
