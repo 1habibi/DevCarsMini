@@ -13,7 +13,9 @@ public class TicketManager : MonoBehaviour
 
     [SerializeField]
     private GameMetaDataModels _models;
-
+    
+    [SerializeField]
+    private int active_index = 0;
     void Awake()
     {
         Debug.Log("awake");
@@ -33,28 +35,41 @@ public class TicketManager : MonoBehaviour
         Debug.Log(_models);
 
         for (int i = 0; i < _models.tickets.Length; i++)
-        {
             randomIndexes.Add(i);
-        }
+        
+        Begin();
     }
     
     public void Begin()
     {
-        randomIndexes.Clear();
-         
-        //for (int i = 0; i < _models.tickets.Length; i++)
-        //{
-        //    int one = Random.Range(0, _models.tickets.Length + 1);
-        //    int two = Random.Range(0, _models.tickets.Length + 1);
-        //    int tmp = _models.tickets[one];
-        //}
+        active_index = 0;
+        Debug.Log("randomIndexes " + randomIndexes.Count);
 
-        Debug.Log(randomIndexes);
-      
+        for (int i = 0; i < randomIndexes.Count; i++){
+            int one = Random.Range(0, randomIndexes.Count);
+            int two = Random.Range(0, randomIndexes.Count);
+            int tmp = randomIndexes[one];
+            if (one == two)
+                continue;
+            Debug.Log("one " + one);
+            Debug.Log("two  " + two);
+            randomIndexes[one] = randomIndexes[two];
+            randomIndexes[two] = tmp;
+        }
+        Debug.Log(randomIndexes.Count);
     }
-    public TicketModel GetModel(int index)
+    public TicketModel GetModel(int index = -1)
     {
+        TicketModel model = null;
         Debug.Log(index);
-        return index >= _models.tickets.Length ? null : _models.tickets[index];
+        if (index >= 0){
+            model = index >= _models.tickets.Length ? null : _models.tickets[index];
+        }
+        else {
+            model = _models.tickets[randomIndexes[active_index++]];
+            if (active_index >= _models.tickets.Length)
+                Begin();
+        }
+        return model;
     }
 }
