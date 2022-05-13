@@ -15,9 +15,12 @@ public class TicketView : MonoBehaviour
 
     [SerializeField] private TicketModel _model;
 
-    public void Answer()
-    {
 
+
+
+    public void CheckAnswer(TicketModel model)
+    {
+    
     }
 
     public void SetTicketModel(TicketModel model)

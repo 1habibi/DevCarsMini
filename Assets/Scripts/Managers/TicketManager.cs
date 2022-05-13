@@ -33,7 +33,6 @@ public class TicketManager : MonoBehaviour
         Debug.Log(json);
         _models = JsonUtility.FromJson<GameMetaDataModels>(json);
         Debug.Log(_models);
-
         for (int i = 0; i < _models.tickets.Length; i++)
             randomIndexes.Add(i);
         
@@ -73,5 +72,10 @@ public class TicketManager : MonoBehaviour
                 Begin();
         }
         return model;
+    }
+
+    public void CheckAnswer()
+    {
+        
     }
 }
