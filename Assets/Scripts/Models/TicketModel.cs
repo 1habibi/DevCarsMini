@@ -18,3 +18,4 @@ public class GameMetaDataModels
 {
     public TicketModel[] tickets;
 }
+
