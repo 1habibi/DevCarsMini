@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TicketView : MonoBehaviour
 {
-    // это указатели, а не данные. 
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. 
     [SerializeField]
     private Text description;
 
@@ -19,31 +19,26 @@ public class TicketView : MonoBehaviour
   
     public void FirstButton()
     {
-        buttonIndex = 1;
-        Debug.Log("Enter button= " + buttonIndex);
+        _checkAnswer(1);
+
     }
     public void SecondButton()
     {
-        buttonIndex = 2;
-        Debug.Log("Enter button= " + buttonIndex);
+        _checkAnswer(2);
     }
     public void ThirdButton()
     {
-        buttonIndex = 3;
-        Debug.Log("Enter button= " + buttonIndex);
+        _checkAnswer(3);
     }
     public void FourthButton()
     {
-        buttonIndex = 4;
-        Debug.Log("Enter button= " + buttonIndex);
+        _checkAnswer(4);
     }
 
-    public void CheckAnswer(TicketModel model)
+    public void _checkAnswer(int answer)
     {
-        if (Answers[buttonIndex].ToString() == model.CorrectAnswer)
-            Game.Instance.SetReward(model, 10);
-        else
-            Game.Instance.SetReward(model, 0);
+        Debug.Log("Enter button= " + answer);
+        Game.Instance.SetReward(_model, answer == _model.CorrectAnswer ? _model.Reward : 0);
     }
 
     public void SetTicketModel(TicketModel model)
@@ -52,10 +47,11 @@ public class TicketView : MonoBehaviour
         description.text = _model.Description;
         Debug.Log(description.text);
         int count = 0;
-        foreach (string answer in model.Answers)
+        foreach (string answer in _model.Answers)
         {
             Answers[count].text = answer;
-            if (++count > Answers.Length)
+            if (count++ > Answers.Length)
+                Debug.LogError("РЎР»РёС€РєРѕРј РјРЅРѕРіРѕ РІР°СЂРёР°РЅС‚РѕРІ РІРѕРїСЂРѕСЃРѕРІ.");
                 break;
         }
     }

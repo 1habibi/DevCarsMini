@@ -3,13 +3,13 @@ using System;
 [Serializable]
 public class TicketModel
 {
-    // описание вопроса
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public string Description;
-    // ответы
+    // пїЅпїЅпїЅпїЅпїЅпїЅ
     public string[] Answers;
-    // верный ответ
-    public string CorrectAnswer;
-    // награда
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public int CorrectAnswer;
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public int Reward;
 }
 
