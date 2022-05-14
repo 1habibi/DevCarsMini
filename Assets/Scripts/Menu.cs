@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class Menu : Singleton<Menu>
 {
     [SerializeField] public GameObject mainMenu;
     [SerializeField] public GameObject storeMenu;
     [SerializeField] public GameObject levelsMenu;
     [SerializeField] public GameObject earnCoins;
+    [SerializeField] public int totalReward;
 
-    private StateMachine stateMachine;
+    public StateMachine stateMachine { get; private set; }
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        LoadGame();
         stateMachine = new StateMachine(this);
         stateMachine.SetState(StateMachine.State.MENU);
     }
@@ -24,6 +28,12 @@ public class Menu : MonoBehaviour
     {
         stateMachine.SetState(StateMachine.State.MENU);
     }
+
+    internal void SetReward(int gameReward)
+    {
+        totalReward += gameReward;
+        SaveGame();
+    }
     public void pushPlay()
     {
         stateMachine.SetState(StateMachine.State.LEVELS);
@@ -32,5 +42,13 @@ public class Menu : MonoBehaviour
     {
         stateMachine.SetState(StateMachine.State.EARNCOINS);
     }
-
+    public void SaveGame()
+    {
+        PlayerPrefs.SetInt("Coins", totalReward);
+        PlayerPrefs.Save();
+    }
+    void LoadGame()
+    {
+        totalReward = PlayerPrefs.GetInt("Coins");
+    }
 }

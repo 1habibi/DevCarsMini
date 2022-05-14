@@ -58,19 +58,11 @@ public class TicketManager : MonoBehaviour
         }
         Debug.Log(randomIndexes.Count);
     }
-    public TicketModel GetModel(int index = -1)
+    public TicketModel GetModel()
     {
-        TicketModel model = null;
-        Debug.Log(index);
-        if (index >= 0){
-            model = index >= _models.tickets.Length ? null : _models.tickets[randomIndexes[active_index]];
-            active_index++;
-        }
-        else {
-            model = _models.tickets[randomIndexes[active_index++]];
-            if (active_index >= _models.tickets.Length)
-                Begin();
-        }
+        TicketModel model = _models.tickets[randomIndexes[active_index++]];
+        if (active_index >= _models.tickets.Length)
+            Begin();
         return model;
     }
 

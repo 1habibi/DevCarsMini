@@ -25,6 +25,7 @@ public class StateMachine
                 _menu.storeMenu.SetActive(true);
                 _menu.levelsMenu.SetActive(false);
                 _menu.earnCoins.SetActive(false);
+                _menu.storeMenu.GetComponent<ShopView>().UpdateReward();
                 break;
             case State.LEVELS:
                 _menu.mainMenu.SetActive(false);

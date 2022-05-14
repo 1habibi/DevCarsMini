@@ -20,7 +20,6 @@ public class TicketView : MonoBehaviour
     public void FirstButton()
     {
         _checkAnswer(1);
-
     }
     public void SecondButton()
     {
@@ -51,8 +50,10 @@ public class TicketView : MonoBehaviour
         {
             Answers[count].text = answer;
             if (count++ > Answers.Length)
+            {
                 Debug.LogError("Слишком много вариантов вопросов.");
                 break;
+            }      
         }
     }
 }

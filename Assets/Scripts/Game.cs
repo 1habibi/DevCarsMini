@@ -7,45 +7,43 @@ public class Game : Singleton<Game>
 {
     [SerializeField] private TicketManager _ticketManager;
     [SerializeField] private TicketView ticketView;
-    [SerializeField] private int active_ticket;
-    [SerializeField] private int totalReward = 0;
+    [SerializeField] public int gameReward;
+    [SerializeField] private int maxQuestions = 5;
+    [SerializeField] private int countQuestins = 0;
+
 
     public void SetReward(TicketModel model, int reward)
     {
-        totalReward += reward;
-        Debug.Log(totalReward);
+        gameReward += reward;
+        
+        if(countQuestins++ == maxQuestions)
+        {
+            Menu.Instance.stateMachine.SetState(StateMachine.State.MENU);
+            Menu.Instance.SetReward(gameReward);
+        }     
+        else
+            Begin(); 
+        Debug.Log(countQuestins);
     }
-    
+
+
+
+    public void BeginGame()
+    {
+        gameReward = 0;
+        Begin();
+    }
     void Start()
     {
-        active_ticket = 0;
         _ticketManager = GetComponent<TicketManager>();
-        _ticketManager.Parse();
-        Begin();
+        _ticketManager.Parse(); 
     }
     public void Begin()
     {
-        TicketModel model = _ticketManager.GetModel(active_ticket);
+        TicketModel model = _ticketManager.GetModel();
         if (model != null)
         {
             ticketView.SetTicketModel(model);
-
         }     
-    }
-    public void Next()
-    {
-        TicketModel model = _ticketManager.GetModel(++active_ticket);
-        if (model != null)
-            ticketView.SetTicketModel(model);
-        else
-            // restore value of index
-            active_ticket--;
-    }
-    public void Previous()
-    {
-        if (active_ticket == 0) return;
-        TicketModel model = _ticketManager.GetModel(--active_ticket);
-        if (model != null)
-            ticketView.SetTicketModel(model);
     }
 }
