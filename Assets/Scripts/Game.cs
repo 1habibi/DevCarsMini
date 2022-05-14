@@ -8,6 +8,14 @@ public class Game : Singleton<Game>
     [SerializeField] private TicketManager _ticketManager;
     [SerializeField] private TicketView ticketView;
     [SerializeField] private int active_ticket;
+    [SerializeField] private int totalReward = 0;
+
+    public void SetReward(TicketModel model, int reward)
+    {
+        totalReward += reward;
+        Debug.Log(totalReward);
+    }
+    
     void Start()
     {
         active_ticket = 0;
@@ -21,9 +29,8 @@ public class Game : Singleton<Game>
         if (model != null)
         {
             ticketView.SetTicketModel(model);
-        }
-            
 
+        }     
     }
     public void Next()
     {

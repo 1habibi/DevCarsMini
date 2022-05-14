@@ -74,8 +74,4 @@ public class TicketManager : MonoBehaviour
         return model;
     }
 
-    public void CheckAnswer()
-    {
-        
-    }
 }

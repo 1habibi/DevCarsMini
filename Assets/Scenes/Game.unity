@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 247059563}
   - component: {fileID: 247059562}
   m_Layer: 0
-  m_Name: 4
+  m_Name: FourthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 247059563}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906502724}
+        m_TargetAssemblyTypeName: TicketView, Assembly-CSharp
+        m_MethodName: FourthButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &247059563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +741,7 @@ GameObject:
   - component: {fileID: 366805463}
   - component: {fileID: 366805462}
   m_Layer: 0
-  m_Name: 1
+  m_Name: FirstButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,7 +811,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 366805463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906502724}
+        m_TargetAssemblyTypeName: TicketView, Assembly-CSharp
+        m_MethodName: FirstButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &366805463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,7 +1256,7 @@ GameObject:
   - component: {fileID: 581965594}
   - component: {fileID: 581965593}
   m_Layer: 0
-  m_Name: 3
+  m_Name: ThirdButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1326,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 581965594}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906502724}
+        m_TargetAssemblyTypeName: TicketView, Assembly-CSharp
+        m_MethodName: ThirdButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &581965594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,6 +1599,7 @@ MonoBehaviour:
   _ticketManager: {fileID: 0}
   ticketView: {fileID: 1906502724}
   active_ticket: 0
+  totalReward: 0
 --- !u!1 &870001676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,6 +3126,7 @@ MonoBehaviour:
     Answers: []
     CorrectAnswer: 
     Reward: 0
+  buttonIndex: 0
 --- !u!1 &1926226369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,7 +3140,7 @@ GameObject:
   - component: {fileID: 1926226372}
   - component: {fileID: 1926226371}
   m_Layer: 0
-  m_Name: 2
+  m_Name: SecondButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3172,7 +3210,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1926226372}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1906502724}
+        m_TargetAssemblyTypeName: TicketView, Assembly-CSharp
+        m_MethodName: SecondButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1926226372
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,12 +15,35 @@ public class TicketView : MonoBehaviour
 
     [SerializeField] private TicketModel _model;
 
-
-
+    [SerializeField] private int buttonIndex;
+  
+    public void FirstButton()
+    {
+        buttonIndex = 1;
+        Debug.Log("Enter button= " + buttonIndex);
+    }
+    public void SecondButton()
+    {
+        buttonIndex = 2;
+        Debug.Log("Enter button= " + buttonIndex);
+    }
+    public void ThirdButton()
+    {
+        buttonIndex = 3;
+        Debug.Log("Enter button= " + buttonIndex);
+    }
+    public void FourthButton()
+    {
+        buttonIndex = 4;
+        Debug.Log("Enter button= " + buttonIndex);
+    }
 
     public void CheckAnswer(TicketModel model)
     {
-    
+        if (Answers[buttonIndex].ToString() == model.CorrectAnswer)
+            Game.Instance.SetReward(model, 10);
+        else
+            Game.Instance.SetReward(model, 0);
     }
 
     public void SetTicketModel(TicketModel model)
