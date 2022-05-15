@@ -15,7 +15,6 @@ public class Game : Singleton<Game>
     public void SetReward(TicketModel model, int reward)
     {
         gameReward += reward;
-        
         if(countQuestins++ == maxQuestions)
         {
             Menu.Instance.stateMachine.SetState(StateMachine.State.MENU);
@@ -26,17 +25,18 @@ public class Game : Singleton<Game>
         Debug.Log(countQuestins);
     }
 
-
-
-    public void BeginGame()
+    public void NewGame()
     {
         gameReward = 0;
+        countQuestins = 0;
         Begin();
     }
     void Start()
     {
         _ticketManager = GetComponent<TicketManager>();
-        _ticketManager.Parse(); 
+        _ticketManager.Parse();
+        Debug.Log(_ticketManager);
+        Begin();
     }
     public void Begin()
     {

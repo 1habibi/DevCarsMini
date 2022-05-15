@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu : Singleton<Menu>
 {
@@ -11,8 +12,13 @@ public class Menu : Singleton<Menu>
     [SerializeField] public GameObject earnCoins;
     [SerializeField] public int totalReward;
 
+    
     public StateMachine stateMachine { get; private set; }
-
+    internal void SetReward(int gameReward)
+    {
+        totalReward += gameReward;
+        SaveGame();
+    }
     public override void Awake()
     {
         base.Awake();
@@ -29,11 +35,6 @@ public class Menu : Singleton<Menu>
         stateMachine.SetState(StateMachine.State.MENU);
     }
 
-    internal void SetReward(int gameReward)
-    {
-        totalReward += gameReward;
-        SaveGame();
-    }
     public void pushPlay()
     {
         stateMachine.SetState(StateMachine.State.LEVELS);
@@ -41,6 +42,7 @@ public class Menu : Singleton<Menu>
     public void pushEarnCoins()
     {
         stateMachine.SetState(StateMachine.State.EARNCOINS);
+        Game.Instance.NewGame();
     }
     public void SaveGame()
     {
