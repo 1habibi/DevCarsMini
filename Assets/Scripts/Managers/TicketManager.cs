@@ -35,11 +35,9 @@ public class TicketManager : MonoBehaviour
         Debug.Log(_models);
         for (int i = 0; i < _models.tickets.Length; i++)
             randomIndexes.Add(i);
-        
-        Begin();
     }
     
-    public void Begin()
+    public void MixIndexes()
     {
         active_index = 0;
         Debug.Log("randomIndexes " + randomIndexes.Count);
@@ -62,7 +60,7 @@ public class TicketManager : MonoBehaviour
     {
         TicketModel model = _models.tickets[randomIndexes[active_index++]];
         if (active_index >= _models.tickets.Length)
-            Begin();
+            MixIndexes();
         return model;
     }
 

@@ -29,12 +29,14 @@ public class Game : Singleton<Game>
     {
         gameReward = 0;
         countQuestins = 0;
+        _ticketManager.MixIndexes();
         Begin();
     }
     void Start()
     {
         _ticketManager = GetComponent<TicketManager>();
         _ticketManager.Parse();
+        _ticketManager.MixIndexes();
         Debug.Log(_ticketManager);
         Begin();
     }
