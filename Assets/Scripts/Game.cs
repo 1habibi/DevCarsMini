@@ -32,12 +32,12 @@ public class Game : Singleton<Game>
         _ticketManager.MixIndexes();
         Begin();
     }
-    void Start()
+    override public void Awake()
     {
+        base.Awake();
         _ticketManager = GetComponent<TicketManager>();
         _ticketManager.Parse();
         _ticketManager.MixIndexes();
-        Debug.Log(_ticketManager);
         Begin();
     }
     public void Begin()
