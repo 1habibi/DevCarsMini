@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class GameCar : Singleton<GameCar>
 {
-
     [SerializeField] GameObject parent;
     [SerializeField] GameObject prefab;
-    [SerializeField] private int countObjects = 2;
-    [Range(0, 100)]
-    [SerializeField] private int minXSpawn = -9;
-    [Range(0, 100)]
-    [SerializeField] private int minYSpawn = 9;
+    [SerializeField] private int countObjects;
 
     override public void Awake()
     {

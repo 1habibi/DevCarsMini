@@ -2,33 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BackgroundObjectManager : MonoBehaviour
+public class BackgroundObjectManager : BaseMovementObject
 {
-    [SerializeField] private Sprite[] images;
-    private SpriteRenderer spr;
-    [SerializeField] private Vector3 increaseValues;
-    [SerializeField] private Vector2 rangeX;
-    [SerializeField] private int beginY;
-    [SerializeField] private int end;
-
-    private void Awake()
+    protected override void initImage()
     {
-        spr = GetComponent<SpriteRenderer>();
-        spr.sprite = images[Random.Range(0,images.Length)];    
+        base.spr = GetComponent<SpriteRenderer>();
+        base.spr.sprite = base.images[Random.Range(0, base.images.Length)];
     }
-
-    private void newPosition()
+    protected override void newPosition()
     {
-        transform.localPosition = new Vector3(Random.Range(rangeX.x,rangeX.y), beginY, -1);
-    }
-
-    void Update()
-    {
-       transform.localPosition += increaseValues * Time.deltaTime;
-       if(transform.localPosition.y < end)
-       {
-            newPosition();
-       }
+        transform.localPosition = new Vector3(Random.Range(base.rangeX.x,base.rangeX.y), base.beginY, -1);
     }
 }

@@ -6,49 +6,72 @@ public class TestCarMovment : MonoBehaviour
 {
     private Rigidbody2D rb2D;
 
-    private float moveSpeed;
-    private float moveHorizontal;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float health = 100;
+    [SerializeField] private float moveHorizontal;
     private float moveVertical;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-        moveSpeed = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        moveVertical = Input.GetAxisRaw("Vertical");
+        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        rb2D.MovePosition(transform.position + m_Input * Time.deltaTime * moveSpeed);
     }
 
     private void FixedUpdate()
     {
-        if(moveHorizontal > 0.1f || moveHorizontal < 0.1f)
-        {
-            rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
-        }
-        if (moveVertical > 0.1f || moveHorizontal < 0.1f)
-        {
-            rb2D.AddForce(new Vector2(0f, moveVertical * moveSpeed), ForceMode2D.Impulse);
-        }
-    }
+        //if(moveHorizontal > 0.1f || moveHorizontal < 0.1f)
+        //{
+        //    rb2D.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
+        //}
+        //if (moveVertical > 0.1f || moveHorizontal < 0.1f)
+        //{
+        //    rb2D.AddForce(new Vector2(0f, moveVertical * moveSpeed), ForceMode2D.Impulse);
+        //}
+        //if (moveVertical == 0 && moveHorizontal == 0)
+        //{
+        //    rb2D.AddForce(Vector2.zero, ForceMode2D.Impulse);
+        //}
 
+
+        //Store user input as a movement vector
+        //Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        //Apply the movement vector to the current position, which is
+        //multiplied by deltaTime and speed for a smooth MovePosition
+        //m_Rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * m_Speed);
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag != "Square (1)")
+        GameObject obj = collision.gameObject;
+        if (obj.GetComponent<BonusModel>() != null)
         {
-            if (moveHorizontal > 0.1f || moveHorizontal < 0.1f)
+            BonusModel bonusModel = obj.GetComponent<BonusModel>(); 
+            if(!bonusModel.GivenBonus)
             {
-                rb2D.AddForce(new Vector2(-moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
+                Debug.Log("Bonus =" + bonusModel.BonusDamage());
+                bonusModel.RestartPosition(Random.Range(3,5));
+                bonusModel.GivenBonus = true;
             }
-            if (moveVertical > 0.1f || moveHorizontal < 0.1f)
-            {
-                rb2D.AddForce(new Vector2(0f, -moveVertical * moveSpeed), ForceMode2D.Impulse);
-            }
+            else
+                bonusModel.GivenBonus = false;
         }
+        
+        //else if(collision.gameObject.tag != "road 1_0" || obj.GetComponent<BlockModel>() != null)
+        //{
+        //    if (moveHorizontal > 0.1f || moveHorizontal < 0.1f)
+        //    {
+        //        rb2D.AddForce(new Vector2(-moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
+        //    }
+        //    if (moveVertical > 0.1f || moveHorizontal < 0.1f)
+        //    {
+        //        rb2D.AddForce(new Vector2(0f, -moveVertical * moveSpeed), ForceMode2D.Impulse);
+        //    }
+        //}
     }
 }
