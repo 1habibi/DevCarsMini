@@ -7,7 +7,6 @@ public class ResetCoins : MonoBehaviour
     public void Reset()
     {
         Menu.Instance.totalReward = 0;
-        Menu.Instance.SaveGame();
-        
+        User.coins = 0;
     }
 }

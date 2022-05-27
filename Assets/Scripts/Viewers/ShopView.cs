@@ -11,4 +11,5 @@ public class ShopView : MonoBehaviour
     {
         totalReward.text = Menu.Instance.totalReward.ToString();
     }
+
 }

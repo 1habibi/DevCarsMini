@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestCarMovment : MonoBehaviour
 {
     private Rigidbody2D rb2D;
 
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float health = 100;
     [SerializeField] private float moveHorizontal;
+    [SerializeField] private GameObject timerLeft;
     private float moveVertical;
 
     void Start()
@@ -55,12 +56,22 @@ public class TestCarMovment : MonoBehaviour
             if(!bonusModel.GivenBonus)
             {
                 Debug.Log("Bonus =" + bonusModel.BonusDamage());
+                if (bonusModel.BonusDamage() == -1)
+                {
+                    timerLeft.GetComponent<TimerLeft>().DamageTick();
+                }
                 bonusModel.RestartPosition(Random.Range(3,5));
                 bonusModel.GivenBonus = true;
             }
             else
                 bonusModel.GivenBonus = false;
         }
+        else if(obj.GetComponent<FinishModel>() != null)
+        {
+            Debug.Log("FINISH");
+            SceneManager.LoadScene(0);
+        }
+
         
         //else if(collision.gameObject.tag != "road 1_0" || obj.GetComponent<BlockModel>() != null)
         //{

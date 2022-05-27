@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : Singleton<Menu>
 {
@@ -17,12 +18,12 @@ public class Menu : Singleton<Menu>
     internal void SetReward(int gameReward)
     {
         totalReward += gameReward;
-        SaveGame();
+        User.coins = totalReward;
     }
     public override void Awake()
     {
         base.Awake();
-        LoadGame();
+        totalReward = User.coins;
         stateMachine = new StateMachine(this);
         stateMachine.SetState(StateMachine.State.MENU);
     }
@@ -34,7 +35,6 @@ public class Menu : Singleton<Menu>
     {
         stateMachine.SetState(StateMachine.State.MENU);
     }
-
     public void pushPlay()
     {
         stateMachine.SetState(StateMachine.State.LEVELS);
@@ -44,13 +44,9 @@ public class Menu : Singleton<Menu>
         stateMachine.SetState(StateMachine.State.EARNCOINS);
         Game.Instance.NewGame();
     }
-    public void SaveGame()
+    public void pushFirstLevel()
     {
-        PlayerPrefs.SetInt("Coins", totalReward);
-        PlayerPrefs.Save();
+        SceneManager.LoadScene(1);
     }
-    void LoadGame()
-    {
-        totalReward = PlayerPrefs.GetInt("Coins");
-    }
+
 }
