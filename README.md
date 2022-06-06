@@ -1,2 +1,2 @@
-My mini game maked for coursework
-Maybe i`ll continue developing
+my mini game maked for coursework.
+baybe i`ll continue developing. but not really
