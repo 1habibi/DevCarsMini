@@ -17,15 +17,28 @@ public static class User
         } 
     }
 
-    public static int skinID
+    public static int skin
     {
         get
         {
-            return PlayerPrefs.GetInt("ID");
+            return PlayerPrefs.GetInt("skin");
         }
         set
         {
-            PlayerPrefs.SetInt("ID", value);
+            PlayerPrefs.SetInt("skin", value);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static string buySkin
+    {
+        get
+        {
+            return PlayerPrefs.GetString("buySkin");
+        }
+        set
+        {
+            PlayerPrefs.SetString("buySkin", value);
             PlayerPrefs.Save();
         }
     }

@@ -9,7 +9,7 @@ public class TicketManager : MonoBehaviour
     private string pathTickets;
 
     [SerializeField]
-    private List<int> randomIndexes;  
+    private List<int> randomIndexes = new List<int>();
 
     [SerializeField]
     private GameMetaDataModels _models;
@@ -20,23 +20,20 @@ public class TicketManager : MonoBehaviour
     {
         Debug.Log("awake");
         Debug.Log("Application.persistentDataPath " + Application.dataPath);
-        randomIndexes = new List<int>();
     }
 
     public void Parse()
     {
-        string path = Application.dataPath + pathTickets;
-        //Read the text from directly from the test.txt file
-        StreamReader reader = new StreamReader(path);
-        string json = reader.ReadToEnd();
-        reader.Close();
+        string json = Resources.Load("tickets").ToString();
         Debug.Log(json);
         _models = JsonUtility.FromJson<GameMetaDataModels>(json);
         Debug.Log(_models);
         for (int i = 0; i < _models.tickets.Length; i++)
+        {
             randomIndexes.Add(i);
+        }
+           
     }
-    
     public void MixIndexes()
     {
         active_index = 0;
@@ -58,9 +55,13 @@ public class TicketManager : MonoBehaviour
     }
     public TicketModel GetModel()
     {
-        TicketModel model = _models.tickets[randomIndexes[active_index++]];
+        active_index++;
         if (active_index >= _models.tickets.Length)
             MixIndexes();
+        Debug.Log("active index= " + active_index + " randomIndexes size = " + randomIndexes.Count);
+        int value = randomIndexes[active_index];
+        Debug.Log("value = " + value);
+        TicketModel model = _models.tickets[value];
         return model;
     }
 

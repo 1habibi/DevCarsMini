@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7719474229651671147}
   - component: {fileID: 7719474229651671142}
-  - component: {fileID: 7719474229651671145}
   - component: {fileID: 7719474229651671144}
   - component: {fileID: 1460777874526054061}
   - component: {fileID: 1460777874526054060}
+  - component: {fileID: 4564731808335523749}
   m_Layer: 0
   m_Name: CarHero
   m_TagString: Untagged
@@ -88,32 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7719474229651671145
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7719474229651671146}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: 0.03}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.62, y: 0.82}
-    newSize: {x: 0.62, y: 0.82}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.76}
-  m_EdgeRadius: 0
 --- !u!50 &7719474229651671144
 Rigidbody2D:
   serializedVersion: 4
@@ -171,5 +145,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65a89bc9fc719b74188e62c75cda27bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  timerLeft: {fileID: 0}
+  gameTimer: {fileID: 0}
+  raceReward: 0
+  damage: 0
+--- !u!114 &4564731808335523749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719474229651671146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdd9c2c9c18ff54ea87ebd1cd320304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

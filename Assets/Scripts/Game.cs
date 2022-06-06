@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Game : Singleton<Game>
+public class Game : MonoBehaviour
 {
     [SerializeField] private TicketManager _ticketManager;
     [SerializeField] private TicketView ticketView;
@@ -11,14 +11,22 @@ public class Game : Singleton<Game>
     [SerializeField] private int maxQuestions = 5;
     [SerializeField] private int countQuestins = 0;
 
-
     public void SetReward(TicketModel model, int reward)
     {
+        if (reward == 10)
+        {
+            AudioManager.Instance.CorrectAnswer();
+        }
+        else if (reward == 0)
+        {
+            AudioManager.Instance.IncorrectAnswer();
+        }
         gameReward += reward;
         if(countQuestins++ == maxQuestions)
         {
-            Menu.Instance.stateMachine.SetState(StateMachine.State.MENU);
-            Menu.Instance.SetReward(gameReward);
+            MainSceneManager.Instance.SwapScene(SceneType.QUIZPLAY, SceneType.QUIZPLAYRESULTS);
+            AudioManager.Instance.QuizPlayResults();
+            TotalReward.Instance.SetReward(gameReward);
         }     
         else
             Begin(); 
@@ -29,16 +37,13 @@ public class Game : Singleton<Game>
     {
         gameReward = 0;
         countQuestins = 0;
-        _ticketManager.MixIndexes();
-        Begin();
-    }
-    override public void Awake()
-    {
-        base.Awake();
-        _ticketManager = GetComponent<TicketManager>();
-        _ticketManager.Parse();
-        _ticketManager.MixIndexes();
-        Begin();
+        if(_ticketManager == null)
+        {
+            _ticketManager = GetComponent<TicketManager>();
+            _ticketManager.Parse();
+            _ticketManager.MixIndexes();
+            Begin();
+        }    
     }
     public void Begin()
     {

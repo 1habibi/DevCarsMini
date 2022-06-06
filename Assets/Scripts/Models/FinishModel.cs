@@ -7,8 +7,10 @@ public class FinishModel : MonoBehaviour
     [SerializeField] private bool canRun;
     [SerializeField] private Vector3 increaseValues;
 
-   void Start()
+   public void NewGameFinishCoroutine()
    {
+        canRun = false;
+        transform.position = new Vector3(-2, 7, -2);
         StartCoroutine(FinishCoroutine(10));
    }
 

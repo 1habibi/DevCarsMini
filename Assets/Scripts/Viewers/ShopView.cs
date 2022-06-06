@@ -9,7 +9,7 @@ public class ShopView : MonoBehaviour
 
     public void UpdateReward()
     {
-        totalReward.text = Menu.Instance.totalReward.ToString();
+        totalReward.text = User.coins.ToString();
     }
 
 }

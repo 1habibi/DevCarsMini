@@ -7,7 +7,7 @@ public class BackgroundObjectManager : BaseMovementObject
     protected override void initImage()
     {
         base.spr = GetComponent<SpriteRenderer>();
-        base.spr.sprite = base.images[Random.Range(0, base.images.Length)];
+        base.spr.sprite = ObjectResourceManager.Instance.GetRandomObject();
     }
     protected override void newPosition()
     {

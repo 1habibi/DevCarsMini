@@ -2,23 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameCar : Singleton<GameCar>
+public class GameCar : MonoBehaviour
 {
     [SerializeField] GameObject parent;
     [SerializeField] GameObject prefab;
     [SerializeField] private int countObjects;
-
-    override public void Awake()
+    [SerializeField] CarSkinManager carSkinManager;
+    [SerializeField] GameTimer gameTimer;
+    [SerializeField] TestCarMovment carMovment;
+    [SerializeField] FinishModel finishModel;
+    [SerializeField] List<BonusModel> bonusModels; 
+    private bool isBackInit = false;
+    public void NewGame(int dmg)
     {
-        base.Awake();
-        NewGame();
-    }
-    public void NewGame()
-    {
-        for (int i = 0; i < countObjects; i++)
+        Debug.Log(isBackInit);
+        carMovment.damage = dmg;
+        carSkinManager.Initialization();
+        carSkinManager.SetSkin();
+        carMovment.InitCarMovment();
+        finishModel.NewGameFinishCoroutine();
+        gameTimer.NewGameFuelTimer();
+        foreach(BonusModel bonus in bonusModels)
         {
-            GameObject newObject = Instantiate(prefab, new Vector3(Random.Range(-9,9), Random.Range(-5.5f, 6f), 0), Quaternion.identity);
-            newObject.transform.parent = parent.transform;
+            bonus.DefaultPosition();
         }
+        if(isBackInit == false)
+        {
+            for (int i = 0; i < countObjects; i++)
+            {
+                GameObject newObject = Instantiate(prefab, new Vector3(Random.Range(-9, 9), Random.Range(-5.5f, 6f), 0), Quaternion.identity);
+                newObject.transform.parent = parent.transform;
+            }
+            isBackInit = true;
+        }
+       
     }  
 }

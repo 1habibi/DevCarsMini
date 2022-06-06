@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class CarSkinManager : MonoBehaviour
 {
-    [SerializeField] protected Sprite[] skins;
-    [SerializeField] private int skinIndex;
+    private SpriteRenderer spr;
+    private Sprite carSkin;
+    public void Initialization()
+    {
+        if (spr == null)
+        {
+            spr = GetComponent<SpriteRenderer>();
+            Debug.Log("GetComponent<SpriteRenderer>();");
+        }
+    }
 
-    public Sprite SetSkin(int index)
+    public void SetSkin()
     {
-        return skins[index];
+        int skin;
+        if (User.buySkin == "")
+        {
+             skin = 0;
+        }
+        else
+             skin = User.skin;
+        Debug.Log("User.skin = " + skin);
+        carSkin = CarSkinResourceManager.Instance.skins[skin];
+        spr.sprite = carSkin;
     }
-   
-    public void SetFirstIndex()
-    {
-        skinIndex = 1;
-    }
-    public void SetSecondIndex()
-    {
-        skinIndex = 2;
-    }
+
 }
 

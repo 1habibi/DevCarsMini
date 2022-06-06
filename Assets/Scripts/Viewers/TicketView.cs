@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class TicketView : MonoBehaviour
 {
+    [SerializeField] private Game _game;
+
     // ��� ���������, � �� ������. 
     [SerializeField]
     private Text description;
@@ -37,7 +39,7 @@ public class TicketView : MonoBehaviour
     public void _checkAnswer(int answer)
     {
         Debug.Log("Enter button= " + answer);
-        Game.Instance.SetReward(_model, answer == _model.CorrectAnswer ? _model.Reward : 0);
+        _game.SetReward(_model, answer == _model.CorrectAnswer ? _model.Reward : 0);
     }
 
     public void SetTicketModel(TicketModel model)

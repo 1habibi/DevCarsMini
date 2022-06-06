@@ -6,7 +6,7 @@ public class ResetCoins : MonoBehaviour
 {
     public void Reset()
     {
-        Menu.Instance.totalReward = 0;
+        TotalReward.Instance.totalReward = 0;
         User.coins = 0;
     }
 }
